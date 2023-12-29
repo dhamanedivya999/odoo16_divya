@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+
+    <record id="action_carrierdashboard_sales" model="ir.actions.act_window">
+        <field name="name">sales</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+
+
+    <menuitem id="menu_sale"
+              name="sales"
+              parent="menu_carrierdashboard_root"
+              action="action_carrierdashboard_sales"
+              sequence="10"/>
+
+
+
+</odoo>

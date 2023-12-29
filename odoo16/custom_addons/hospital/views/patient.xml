@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <record id ="view_hospital_patient_form" model="ir.ui.view">
+       <field name="name">hospital.patient.form</field>
+       <field name="model">hospital.patient</field>
+       <field name="arch" type="xml">
+<!--           <header>-->
+<!--                         <field name="status" widget="statusbar" nolabel="1" options="{'clickable':'1'}"-->
+<!--                           statusbar_visible="pending,approved,rejected"/>-->
+<!--                         <button string="Send for Approval" type="object" name="action_send_for_approval"-->
+<!--                          widget="statusbar"  class="btn-primary"/>-->
+
+<!--                    </header>-->
+            <form>
+                <sheet>
+<!--                    <header>-->
+<!--                         <field name="status" widget="statusbar" nolabel="1" options="{'clickable':'1'}"-->
+<!--                           statusbar_visible="draft,pending,approved,rejected"/>-->
+<!--                         <button string="Send for Approval" type="object" name="action_send_for_approval"-->
+<!--                          widget="statusbar"  class="btn-primary"/>-->
+
+<!--                    </header>-->
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ref" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="name"/>
+                        <field name="is_child"/>
+                        <field name="age"/>
+                        <field name="gender"/>
+                        <field name="doctor_id" options="{'no_open':True, 'no_create': True}"/>
+                        <field name="capitalized_name"/>
+                         <field name="appointment_time"/>
+                         <field name="booking_date"/>
+                        <field name="date_of_birth"/>
+<!--                        many to many field-->
+                        <field name="tag_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids" options="{'post_refresh':'recipients'}"/>
+                </div>
+
+            </form>
+       </field>
+   </record>
+
+    <record id ="view_hospital_patient_tree" model="ir.ui.view">
+       <field name="name">hospital.patient.tree</field>
+       <field name="model">hospital.patient</field>
+       <field name="arch" type="xml">
+            <tree>
+                <field name="ref"/>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="capitalized_name"/>
+                <field name="appointment_time"/>
+                <field name="booking_date"/>
+                <field name="date_of_birth"/>
+<!--                <field name="status"/>-->
+            </tree>
+       </field>
+   </record>
+
+
+    <record id ="view_hospital_patient_search" model="ir.ui.view">
+       <field name="name">hospital.patient.search</field>
+       <field name="model">hospital.patient</field>
+       <field name="arch" type="xml">
+             <search>
+<!--                search view add filters and group by field-->
+                <field name="name" filter_domain="['|',('name','ilike',self),('ref','ilike',self)]"/>
+                <field name="age"/>
+                <field name="gender"/>
+                 <filter name="filter_male" string="Male" domain="[('gender','=','male')]"/>
+                  <filter name="filter_female" string="Female" domain="[('gender','=','female')]"/>
+                  <filter name="filter_others" string="Others" domain="[('gender','=','others')]"/>
+                 <separator/>
+                  <filter name="filter_childs" string="Childs" domain="[('is_child','=', True)]"/>
+                 <group expand="0" string="Group By...">
+                     <filter string="Gender" name="group_by_gender" context="{'group_by':'gender'}"/>
+                 </group>
+
+             </search>
+
+       </field>
+   </record>
+
+
+
+   <record id ="action_hospital_patient" model="ir.actions.act_window">
+       <field name="name">Patients</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">hospital.patient</field>
+       <field name="view_mode">tree,form</field>
+<!--       set default filter child and group by field-->
+<!--       <field name="context">{'search_default_filter_childs':1,'search_default_group_by_gender':1}</field>-->
+       <field name="context">{}</field>
+       <field name="search_view_id" ref="hospital.view_hospital_patient_search"/>
+   </record>
+
+    <menuitem id ="menu_patients"
+              name="Patients"
+              parent="menu_hospital_operations"
+              action="action_hospital_patient"
+              sequence="10"/>
+</odoo>

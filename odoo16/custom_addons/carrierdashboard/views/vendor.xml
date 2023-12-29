@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+
+    <record id="action_carrierdashboard_vendors" model="ir.actions.act_window">
+        <field name="name">vendors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+
+    </record>
+
+
+
+    <menuitem id="menu_vendor"
+              name="vendors"
+              parent="menu_carrierdashboard_root"
+              action="action_carrierdashboard_vendors"
+              sequence="10"/>
+
+
+
+</odoo>

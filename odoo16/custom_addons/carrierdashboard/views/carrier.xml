@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_carrierdashboard_carrier_form" model="ir.ui.view">
+        <field name="name">carrierdashboard.carrier.form</field>
+        <field name="model">carrierdashboard.carrier</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" nolabel="1" options="{'clickable':'1'}"
+                           statusbar_visible="pending,all,in transit,delivered"
+                           data-hotkey="x"/>
+
+                    <!--                    <button name="action_test" string="All" type="object" class="oe_highlight"-->
+                    <!--                    state="all" data-hotkey="x"/>-->
+
+                    <!--                     <button name="action_t" string="Pending" type="object" class="oe_highlight"-->
+                    <!--                    state="pending" data-hotkey="x"/>-->
+
+                    <!--                     <button name="action_te" string="In Transit" type="object" class="oe_highlight"-->
+                    <!--                    state="in transit" data-hotkey="x"/>-->
+
+                    <!--                     <button name="action_tes" string="Delivered" type="object" class="oe_highlight"-->
+                    <!--                    state="delivered" data-hotkey="x"/>-->
+
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ref" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group col="4">
+                        <group>
+                            <field name="image" widget="image" class="oe_left "
+                                   style="width: 200px; height: 200px;"/>
+                        </group>
+                        <group>
+                            <field name="orderid"/>
+                            <field name="From"/>
+
+                        </group>
+                        <group>
+                            <field name="product"/>
+                            <field name="to"/>
+                        </group>
+                        <group>
+                            <field name="quantity"/>
+                            <field name="description"/>
+                        </group>
+
+                    </group>
+                    <notebook>
+<!--                        <page string="Tracking" name="Tracking">-->
+<!--                            <field name="tracking_ids">-->
+<!--                                -->
+<!--                            </field>-->
+<!--                        </page>-->
+
+                        <page string="Transportation Details" name="TransportationDetails">
+<!--                            <group>-->
+                                    <button name="%(carrierdashboard.action_carrierdashboard_carrier)d" string="Add New"
+                                            type="action" class="oe_highlight oe_right"/>
+<!--                                </group>-->
+                            <group>
+                                <group>
+                                    <field name="mode" widget="radio"/>
+                                    <field name='vehicletype' placeholder="Enter vehicle Type"/>
+                                    <field name="vehiclenumber" placeholder="Enter vehicle Number" widget="integer"/>
+                                </group>
+
+                                <group>
+                                    <field name='drivername' placeholder="Enter Driver Name"/>
+                                    <field name="drivercontact" placeholder="Enter Diver Contact Number"
+                                           widget="contact" default="False"/>
+                                </group>
+
+                                <group>
+                                    <field name='carriername' placeholder="Enter carriername"/>
+                                    <field name="trackingnumber" placeholder="Enter tracking Number" widget="integer"
+                                           default="False"/>
+                                </group>
+                              <group>
+                                    <button name="%(carrierdashboard.action_carrierdashboard_carrier)d" string="Save"
+                                            type="action" class="oe_highlight oe_right"/>
+                               </group>
+                            </group>
+
+
+
+
+                        </page>
+
+                        <page string="certification&amp;Documents" name="certification&amp;Documents">
+                            <header>
+                                <h4>Upload New Documents</h4>
+
+                            </header>
+                            <group>
+                                <!--                                <field name="files" widget="many2many_binary"/>-->
+
+                                <field name="nameofcertificate" placeholder="Input"/>
+                                <field name="documents" filename="document_name"
+                                       widget="many2many_binary"/>
+                            </group>
+                        </page>
+
+                        <page string="Tracking Details" name="TrackingDetails">
+                            <field name="tracking_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                     <field name="carrier_id"/>
+                                    <field name="date"/>
+                                    <field name="mode"/>
+                                    <field name="location"/>
+                                    <field name="remark"/>
+
+                                </tree>
+                            </field>
+
+
+                        </page>
+
+<!--                            </field>-->
+                            <!--                            <tree>-->
+                            <!--                                <field name="date"/>-->
+                            <!--                                <field name="currentlocation"/>-->
+                            <!--                                <field name="modeoftransport"/>-->
+                            <!--                                <field name="trackingid"/>-->
+                            <!--                                <field name="remark"/>-->
+                            <!--                            </tree>-->
+                            <!--                           <group col="4">-->
+                            <!--                               <group>-->
+                            <!--                            <field name="date" mode="form" placeholder="Enter Date" widget="form_view"/>-->
+                            <!--                            </group>-->
+                            <!--                               <group>-->
+                            <!--                                    <field name="location" placeholder="Enter location" mode="form" widget="form_view"/>-->
+                            <!--                               </group>-->
+                            <!--                               <group>-->
+                            <!--                                    <field name="modeoftransport" placeholder="Enter mode of transport" mode="form" widget="form_view"/>-->
+                            <!--                               </group>-->
+                            <!--                               <group>-->
+                            <!--                                    <field name="remark" placeholder="Enter remark" mode="form" widget="form_view"/>-->
+                            <!--                               </group>-->
+                            <!--                            </group>-->
+<!--                            <field name="carrier_dashboard_lines">-->
+<!--                                <tree editable="bottom">-->
+<!--&lt;!&ndash;                                    <field name="date"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <field name="location"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <field name="mode"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <field name="carriername"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <field name="trackingnumber"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <field name="remark"/>&ndash;&gt;-->
+<!--                                    <field name="qty"/>-->
+<!--                                </tree>-->
+
+<!--                                <form>-->
+<!--                                    <group>-->
+<!--&lt;!&ndash;                                        <field name="date"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <field name="location"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <field name="mode"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <field name="carriername"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <field name="trackingnumber"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <field name="remark"/>&ndash;&gt;-->
+<!--                                        <field name="qty"/>-->
+<!--                                    </group>-->
+<!--                                </form>-->
+<!--                            </field>-->
+
+<!--                        </page>-->
+
+                        <page>
+                            <!--                                <field name="date" mode="tree" widget="tree_view"/>-->
+                            <!--                                <field name="location" mode="tree" widget="tree_view"/>-->
+                            <!--                                <field name="modeoftransport" mode="tree" widget="tree_view"/>-->
+                            <!--                                <field name="carriername" mode="tree" widget="tree_view"/>-->
+                            <!--                                <field name="trackingnumber" mode="tree" widget="tree_view"/>-->
+                            <!--                                <field name="remark" mode="tree" widget="tree_view"/>-->
+                            <!--                                 <field name="From" widget="many2many_tags" options="{'no_create': True}" context="{'tree_view_ref': 'carrierdashboard.carrier.view_carrierdashboard_carrier_tree'}"/>-->
+                            <!--                                      <tree editable="bottom">-->
+                            <!--                                <field name="From" widget="many2many_tags"/>-->
+                            <!--                                </tree>-->
+                        </page>
+
+
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids" options="{'post_refresh':'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_carrierdashboard_carrier_tree" model="ir.ui.view">
+        <field name="name">carrierdashboard.carrier.tree</field>
+        <field name="model">carrierdashboard.carrier</field>
+        <field name="arch" type="xml">
+
+
+            <tree sample="1" multi_edit="1">
+                <!--                <header>-->
+
+
+                <!--                 <button name="action_test" string="All" type="object" class="oe_highlight"/>-->
+                <!--                     <button name="action_test" string="Pending" type="object" class="oe_highlight"-->
+                <!--                     state="pending"/>-->
+                <!--                     <button name="action_test" string="In Transport" type="object" class="oe_highlight"-->
+                <!--                     state=""/>-->
+                <!--                     <button name="action_test" string="Delivered" type="object" class="oe_highlight"/>-->
+                <!--                </header>-->
+
+
+                <!--            </header>-->
+                <!--                <header>-->
+                <!--                &lt;!&ndash; Buttons to be displayed at the top of the tree view &ndash;&gt;-->
+                <!--                <button name="custom_button_action" string="Custom Button" type="object"/>-->
+                <!--                &lt;!&ndash; Add more buttons as needed &ndash;&gt;-->
+                <!--            </header>-->
+
+                <!--                <header>-->
+                <!--                    <button name="action_test" string="All" type="object" class="oe_highlight"-->
+                <!--                    state="all" />-->
+
+                <!--                     <button name="action_t" string="Pending" type="object" class="oe_highlight"-->
+                <!--                    state="pending" />-->
+
+                <!--                     <button name="action_te" string="In Transit" type="object" class="oe_highlight"-->
+                <!--                    state="in transit" />-->
+
+                <!--                     <button name="action_tes" string="Delivered" type="object" class="oe_highlight"-->
+                <!--                    state="delivered" />-->
+
+                <!--                </header>-->
+
+                <field name="orderid"/>
+                <field name="From"/>
+                <field name="to"/>
+                <field name="state"
+                       decoration-danger="state=='All'" decoration-info="state=='pending'"
+                       decoration-success="state=='delivered'"
+                       decoration-warning="state=='in transit'"
+                       widget="badge"/>
+            </tree>
+
+        </field>
+    </record>
+
+
+    <!--    <record id="view_notebook_carrier_dashboard" model="ir.ui.view">-->
+    <!--    <field name="name">carrierdashboard.carrier.notebook</field>-->
+    <!--    <field name="model">carrierdashboard.carrier</field>-->
+    <!--    <field name="arch" type="xml">-->
+    <!--        <notebook>-->
+    <!--            <page string="Transportation Details" name="TransportationDetails">-->
+    <!--                &lt;!&ndash; Fields for Transportation Details (form view) &ndash;&gt;-->
+    <!--                <field name="mode" widget="radio"/>-->
+    <!--                <field name='vehicletype' placeholder="Enter Vehicle Type"/>-->
+    <!--                <field name="vehiclenumber" placeholder="Enter Vehicle Number" widget="integer"/>-->
+    <!--                &lt;!&ndash; Other fields related to transportation details &ndash;&gt;-->
+    <!--                <button name="%(carrierdashboard.action_carrierdashboard_carrier)d" string="Save"-->
+    <!--                        type="object" class="oe_highlight"/>-->
+    <!--            </page>-->
+
+    <!--            <page string="Certification &amp; Documents" name="CertificationDocuments">-->
+    <!--                &lt;!&ndash; Fields for Certification & Documents (form view) &ndash;&gt;-->
+    <!--                <field name="nameofcertificate" placeholder="Input"/>-->
+    <!--                <field name="documents" filename="document_name" widget="many2many_binary"/>-->
+    <!--                &lt;!&ndash; Other fields related to certification and documents &ndash;&gt;-->
+    <!--            </page>-->
+
+    <!--            <page string="Tracking Details" name="TrackingDetails">-->
+    <!--                &lt;!&ndash; Fields for Tracking Details (form view) &ndash;&gt;-->
+
+    <!--                <field name="date" placeholder="Enter Date" mode="form" widget="form_view"/>-->
+    <!--                <field name="location" placeholder="Enter Location" mode="form" widget="form_view"/>-->
+    <!--                <field name="modeoftransport" placeholder="Enter Mode of Transport" mode="form" widget="form_view"/>-->
+    <!--                <field name="remark" placeholder="Enter Remark" mode="form" widget="form_view"/>-->
+    <!--                &lt;!&ndash; Other fields related to tracking details &ndash;&gt;-->
+    <!--            </page>-->
+
+    <!--            <page>-->
+    <!--                &lt;!&ndash; Fields for Tree View Details (tree view) &ndash;&gt;-->
+    <!--                <field name="date" mode="tree" widget="tree_view"/>-->
+    <!--                <field name="location" mode="tree" widget="tree_view"/>-->
+    <!--                <field name="modeoftransport" mode="tree" widget="tree_view"/>-->
+    <!--                <field name="carriername" mode="tree" widget="tree_view"/>-->
+    <!--                <field name="trackingnumber" mode="tree" widget="tree_view"/>-->
+    <!--                <field name="remark" mode="tree" widget="tree_view"/>-->
+    <!--                &lt;!&ndash; Add other tree view fields &ndash;&gt;-->
+    <!--            </page>-->
+    <!--        </notebook>-->
+    <!--    </field>-->
+    <!--</record>-->
+
+
+    <record id="view_carrierdashboard_carrier_search" model="ir.ui.view">
+        <field name="name">carrierdashboard.carrier.search</field>
+        <field name="model">carrierdashboard.carrier</field>
+        <field name="arch" type="xml">
+            <search>
+                <!--                search view add filters and group by field-->
+                <field name="state"/>
+                <filter name="filter_all" string="All" domain="[('state','=','all')]"/>
+                <separator/>
+                <filter name="filter_pending" string="Pending" domain="[('state','=','pending')]"/>
+                <separator/>
+                <filter name="filter_in transit" string="In Transit" domain="[('state','=','in transit')]"/>
+                <separator/>
+                <filter name="filter_delivered" string="delivered" domain="[('state','=','delivered')]"/>
+
+
+            </search>
+        </field>
+    </record>
+
+
+    <!--    <record id="view_carrierdashboard_carrier_notebook" model="ir.ui.view">-->
+    <!--    <field name="name">carrierdashboard.carrier.notebook</field>-->
+    <!--    <field name="model">carrierdashboard.carrier</field>-->
+    <!--    <field name="arch" type="xml">-->
+    <!--        <notebook>-->
+    <!--            <page string="Related Records">-->
+    <!--                <field name="field_related_model_ids">-->
+    <!--                    <tree string="Related Model" editable="bottom">-->
+    <!--                        &lt;!&ndash; Embed the tree view of related.model &ndash;&gt;-->
+    <!--                        <field name="product"/>-->
+    <!--                        <field name="quantity"/>-->
+    <!--                        &lt;!&ndash; Add more fields as needed &ndash;&gt;-->
+    <!--                    </tree>-->
+    <!--                </field>-->
+    <!--            </page>-->
+    <!--        </notebook>-->
+    <!--    </field>-->
+    <!--</record>-->
+
+
+    <record id="action_carrierdashboard_carrier" model="ir.actions.act_window">
+        <field name="name">MarketPlace Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">carrierdashboard.carrier</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+
+    </record>
+
+
+    <menuitem id="menu_carrier"
+              name="carriers"
+              parent="menu_carrierdashboard_carriers"
+              action="action_carrierdashboard_carrier"
+              sequence="10"/>
+
+</odoo>

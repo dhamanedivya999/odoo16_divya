@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id = "sequence_smartdtp" model="ir.sequence">
+            <field name="name">SmartDtp Sequence</field>
+            <field name="code">smart_dtp.smart_dtp</field>
+            <field name="prefix">DO</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+
+</odoo>

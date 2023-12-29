@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_carrierdashboard_root"
+              name="CarrierDashboard"
+              sequence="10"/>
+
+     <menuitem id ="menu_carrierdashboard_carriers"
+              name="Carriers"
+              parent="menu_carrierdashboard_root"
+              sequence="10"/>
+
+<!--    <menuitem id ="menu_carrierdashboard_carriers"-->
+<!--              name="Pdf Report"-->
+<!--              parent="menu_carrierdashboard_root"-->
+<!--              sequence="10"/>-->
+
+
+
+<!--    <menuitem id ="menu_carrierdashboard_purchaseorder"-->
+<!--              name="Purchaseorders"-->
+<!--              parent="menu_carrierdashboard_root"-->
+<!--              sequence="10"/>-->
+
+
+</odoo>
